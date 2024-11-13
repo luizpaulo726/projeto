@@ -8,7 +8,7 @@ Este projeto tem como objetivo fornecer uma solução simples para o cadastro de
 Clone o repositório do projeto para o seu ambiente local:
 
 ```
-git clone <URL do repositório>
+git clone https://github.com/luizpaulo726/projeto.git
 ```
 
 ## Passo 2: Configuração do Banco de Dados MySQL
