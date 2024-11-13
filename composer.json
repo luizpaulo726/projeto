@@ -1,0 +1,14 @@
+{
+    "name": "luiz-paulo/framwork-luiz",
+    "description": "frame-luiz",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "luiz paulo"
+        }
+    ]
+}
