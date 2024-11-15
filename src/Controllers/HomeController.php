@@ -7,7 +7,7 @@ use App\Models\Cidadao;
 
 class HomeController extends Controller
 {
-    private $cidadao;
+    public $cidadao;
 
     public function __construct()
     {
@@ -39,11 +39,10 @@ class HomeController extends Controller
 
                 $this->cidadao->salvar($dados);
 
-                echo json_encode(['message' => 'Cidadão criado com sucesso']);
+                return json_encode(['message' => 'Cidadão criado com sucesso']);
             } catch (\Exception $e) {
-                echo json_encode(['error' => $e->getMessage()]);
+                return json_encode(['error' => $e->getMessage()]);
             }
-            exit;
         }
     }
 
@@ -67,13 +66,18 @@ class HomeController extends Controller
                 throw new \Exception('Nenhum cidadão encontrado.');
             }
 
-            header('Content-Type: application/json');
-            echo json_encode($cidadaos);
+            return $this->formatJsonResponse($cidadaos);
         } catch (\Exception $e) {
-            header('Content-Type: application/json');
-            echo json_encode(['error' => $e->getMessage()]);
+            return $this->formatJsonResponse(['error' => $e->getMessage()], 400);
         }
-        exit;
     }
+    private function formatJsonResponse(array $data, int $statusCode = 200)
+    {
+        header('Content-Type: application/json', true, $statusCode);
+
+        // Retorna o JSON
+        echo json_encode($data);
+    }
+
 
 }

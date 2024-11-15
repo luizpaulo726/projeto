@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Config;
 
 use PDO;
@@ -7,10 +6,10 @@ use PDOException;
 
 class Database
 {
-    private $host = 'localhost';  // SEU HOST
-    private $dbName = 'cadastro_cidadao';  // Nome do banco de dados
-    private $username = 'root';  // SEU NOME DE USUARIO
-    private $password = 'Blue@2021';  // SUA SENHA DO BANCO
+    private $host = 'db';  // Nome do serviço MySQL definido no docker-compose
+    private $dbName = 'cadastro_cidadao';
+    private $username = 'root';
+    private $password = 'Blue@2021';
     private $charset = 'utf8mb4';
     private $pdo;
 
@@ -26,7 +25,8 @@ class Database
         }
 
         try {
-            $dsn = "mysql:host={$this->host};dbname={$this->dbName};charset={$this->charset}";
+            // Usar a porta padrão 3306 do MySQL no container
+            $dsn = "mysql:host={$this->host};dbname={$this->dbName};port=3306;charset={$this->charset}";
             $this->pdo = new PDO($dsn, $this->username, $this->password);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {

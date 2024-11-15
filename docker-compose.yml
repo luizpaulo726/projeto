@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_app
+    ports:
+      - "8080:80" # Mapeia a porta 8080 no host para a porta 80 no container
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db # Define o serviço MySQL como o host do banco
+      - DB_NAME=cadastro_cidadao
+      - DB_USER=root
+      - DB_PASSWORD=Blue@2021
+      - PHP_IDE_CONFIG=serverName=localhost
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_DATABASE: cadastro_cidadao
+      MYSQL_ROOT_PASSWORD: Blue@2021
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql # Monta o script SQL para execução
+
+volumes:
+  db_data:
