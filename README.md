@@ -82,6 +82,7 @@ docker exec -it ID_CONTAINER bash
 
 Isso abrirá um terminal dentro do container.
 
+
 ### 3.4: Executar os Testes Unitários
 
 Dentro do terminal do container, você pode executar os testes unitários do projeto com o comando:
@@ -90,7 +91,7 @@ Dentro do terminal do container, você pode executar os testes unitários do pro
 ./vendor/bin/pest
 ```
 
-Esse comando executará os testes unitários do projeto, se configurado corretamente.
+Esse comando executará os testes unitários do projeto, se configurado corretamente. Mas antes disso, atualize suas dependencias do composer, digite: composer install ou composer update
 
 ## Passo 4: Acessar o Projeto no Navegador
 
